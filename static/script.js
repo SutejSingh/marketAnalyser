@@ -127,13 +127,13 @@ function pp_short(data) {
     remtext = '';
     for (let i = 0; i < restext.length; i++) {
         if (restext[i] == '{' || restext[i] == '}' || restext[i] == '"') continue;
-        else if (restext[i] == ',') remtext += ' ';
+        else if (restext[i] == ',') remtext += ', ';
         remtext += restext[i];
     }
-    restext.replace('/{/', '');
-    restext.replace('/}/', '');
-    restext.replace('/,/', ' ');
-    restext.replace('/"/', '');
+    // restext.replace('/{/', '');
+    // restext.replace('/}/', '');
+    // restext.replace('/,/', ' ');
+    // restext.replace('/"/', '');
     console.log(restext);
 
     $('#infoBox').append('<h3 id="resText">' + remtext + '</h3>')
