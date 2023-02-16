@@ -100,6 +100,7 @@ button:hover {
     box-shadow: 10px 10px 24px rgba(0, 0, 0, 0.05);
     border-radius: 10px;
     background: #FFFFFF;
+    margin-bottom: 10%;
 }
 
 .table-scroll-wrapper {
