@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <script type="text/javascript" src="{{url_for('static', filename='script.js')}}"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row title">
+            <h1>Market Sentiment Analyser</h1>
+        </div>
+
+        <div class="row inputSec">
+            <div class="col-md-6">
+                <div class="row">
+                    <label class="col-md-6 col-12" for="input">Number of Posts</label>
+                    <input class="col-md-6 col-12 numInput" type="number" min="1" max="100" value="10" id="postNum">
+                </div>
+
+                <div class="row">
+                    <label class="col-md-6 col-12" for="input">Number of Comments</label>
+                    <input class="col-md-6 col-12 numInput" type="number" min="1" max="10" value="1" id="commNum">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <button onclick="pp()" id="btn">Analyse</button>
+                <h4 id="status"></h4>
+            </div>
+        </div>
+
+        <div id="infoBox" class="row info">
+            <p>
+                This web-tool that goes through the new posts and comments from r/wallstreetbets and financial news sources (CNBC, Reuters, Investing, Economic Times, Google' aggregated financial news). It finds the subjects using NLP library called spacy and calculates
+                the sentiment of the subject in the posts and comments. The sentiment is calculated using the VADER sentiment analysis tool and is totalled over the number of posts and comments specified by the user.
+            </p>
+            <h4>NOTE: The higher the number of posts and comments being analysed, the longer it takes to retrieve the comments and posts from reddit</h4>
+            <h4 id="result"></h4>
+        </div>
+
+        <!-- <div class="progress"> -->
+        <!-- <progress id='myProgress' class="progress-bar" value="30" max="100" style="width: 100%;"></progress> -->
+        <!-- </div> -->
+
+
+        <div class="row">
+            <div class="col-md-6" id="result">
+                <div class="loader" style="display: none;"></div>
+                <div class="table-wrapper" style="display: none;">
+                    <h4>Reddit Analysis</h4>
+                    <div id="redditCardWrapper" class="table-scroll-wrapper">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6" id="result">
+                <div class="loader" style="display: none;"></div>
+                <div class="table-wrapper" style="display: none;">
+                    <h4>News Analysis</h4>
+                    <div id="newsCardWrapper" class="table-scroll-wrapper">
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+</body>
+
+</html>
