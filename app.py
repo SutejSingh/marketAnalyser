@@ -43,7 +43,7 @@ def progress(job_id):
             if 'progress' in job.meta:
                 d['value'] = job.meta['progress']
             else:
-                d['value'] = 0
+                d['value'] = "Request Queued"
                 
             # IF there's a result, add this to the stream
             if job.result:
