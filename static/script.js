@@ -124,13 +124,19 @@ function pp_short(data) {
     }
 
     restext = JSON.stringify(data.result);
+    remtext = '';
+    for (let i = 0; i < restext.length; i++) {
+        if (restext[i] == '{' || restext[i] == '}' || restext[i] == '"') continue;
+        else if (restext[i] == ',') remtext += ' ';
+        remtext += restext[i];
+    }
     restext.replace('/{/', '');
     restext.replace('/}/', '');
     restext.replace('/,/', ' ');
     restext.replace('/"/', '');
     console.log(restext);
 
-    $('#infoBox').append('<h3 id="resText">' + restext + '</h3>')
+    $('#infoBox').append('<h3 id="resText">' + remtext + '</h3>')
         // document.getElementById("result").innerHTML = data;
     console.log(data);
     $('.loader').hide();
