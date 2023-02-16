@@ -3,13 +3,6 @@ let newsIdNum = 0;
 
 const progressbar = $('#myProgress');
 
-function update_bar(value) {
-    $('#myProgress').attr('value', value);
-    // progressbar.attr('value', value)
-
-    // progress bar should have label
-    progressbar.text(value + '%');
-}
 
 function update(text) {
     $('#status').text("..." + text);
@@ -18,9 +11,8 @@ function update(text) {
 
 function pp() {
 
-    // Reset progress bar incase of re-click.
-    // update_bar(0);
     $('#btn').hide();
+    $('.table-wrapper').hide();
     $('#status').show();
     $('.loader').show();
 
@@ -45,7 +37,6 @@ function pp() {
                 const data = JSON.parse(event.data);
                 console.log("DATAAAAAA: ", data);
 
-                // update_bar(data['value']);
                 update(data['value'])
 
                 if (data['status'] == 'finished') {
@@ -53,16 +44,8 @@ function pp() {
                     $('#status').hide();
                     $('.loader').hide();
 
-                    // Manually set progress to 100 when job is finished, as
-                    // actual progress value may be less from last read.
-
-                    // update(data['value']);
-
                     source.close();
 
-                    // Just write the result which is included in the last streamed item
-                    // to the page
-                    // document.getElementById('result').textContent = data['result']['result'];
                     pp_short(data['result']);
                 }
             }
@@ -78,17 +61,7 @@ function pp() {
 }
 
 function pp_short(data) {
-    // $('.table-wrapper').hide();
-    // $('.loader').show();
-    // $.ajax({
-    //     url: window.location.href + '/get_data',
-    //     type: 'POST',
-    //     data: JSON.stringify({
-    //         'postNum': $('#postNum').val(),
-    //         'commNum': $('#commNum').val()
-    //     }),
-    //     contentType: 'application/json',
-    //     success: function(data) {
+
     console.log("YOOOOOOO: ", data)
     postData = data.postData;
     newsData = data.newsData;
@@ -151,10 +124,10 @@ function pp_short(data) {
     }
 
     restext = JSON.stringify(data.result);
-    restext.replace('{', '');
-    restext.replace('}', '');
-    restext.replace(',', ' ');
-    restext.replace('"', '');
+    restext.replace('/{/', '');
+    restext.replace('/}/', '');
+    restext.replace('/,/', ' ');
+    restext.replace('/"/', '');
     console.log(restext);
 
     $('#infoBox').append('<h3 id="resText">' + restext + '</h3>')
